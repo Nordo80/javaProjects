@@ -7,19 +7,45 @@ public class Program {
         int decimal = asDecimal("11001101");
 
         System.out.println(decimal); // 205
+        System.out.println(asString(205));
     }
 
-    public static String asString(int input) {
-        return "";
+    public static int asString(int input) {
+        String text = "";
+        while (input != 0){
+            if(input % 2 == 0){
+                text += "0";
+            }else{
+                text += "1";
+            }
+            input = input / 2;
+        }
+        return Integer.parseInt(reverseString(text));
     }
 
     public static int asDecimal(String input) {
-        return 0;
+        int ala = input.length();
+        int result = 0;
+        String text = reverseString(input);
+        for ( int i = 0; i < ala; ++i){
+            if (text.charAt(i) == '1'){
+                result += pow(2, i);
+            }
+        }
+        return result;
     }
 
     private static int pow(int arg, int power) {
-        // Java has Math.pow() but this time write your own implementation.
-
-        return 0;
+        int result = 1;
+        while (power != 0) {
+            result = result * arg;
+            power--;
+        }
+        return result;
+    }
+    public static String reverseString(String str){
+        StringBuilder sb=new StringBuilder(str);
+        sb.reverse();
+        return sb.toString();
     }
 }
