@@ -2,6 +2,6 @@
   "firstName": "Aleksandr",
   "lastName": "Borovkov",
   "passwordHash": "18d63be10ad544a04a22c944dee01d6d864ec69b797a58edae92e6a44ad8fdbf",
-  "studyProgram": "S",
+  "formOfStudy": "S",
   "iHaveReadTheRulesOfTheCourse": true
 }
