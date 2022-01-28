@@ -4,23 +4,23 @@ public class Program {
 
     public static void main(String[] args) {
 
-        int decimal = asDecimal("11001101");
+        int decimal = asDecimal("11001100");
 
         System.out.println(decimal); // 205
-        System.out.println(asString(205));
+        System.out.println(asString(204));
     }
 
-    public static int asString(int input) {
-        String text = "";
+    public static String asString(int input) {
+        StringBuilder text = new StringBuilder();
         while (input != 0){
             if(input % 2 == 0){
-                text += "0";
+                text.append("0");
             }else{
-                text += "1";
+                text.append("1");
             }
             input = input / 2;
         }
-        return Integer.parseInt(reverseString(text));
+        return reverseString(text.toString());
     }
 
     public static int asDecimal(String input) {
