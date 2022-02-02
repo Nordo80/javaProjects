@@ -51,7 +51,7 @@ public class Code {
         String blankk = ", ";
         for (i = 0; i < elements.length; i++){
             if (i == elements.length - 1){
-                numbersText += Integer.toString(elements[i]);
+                numbersText += elements[i];
             }else{
                 numbersText += elements[i] + blankk;
             }
@@ -72,7 +72,7 @@ public class Code {
             }
         }
         for (Map.Entry<Character, Integer> entry : map.entrySet()) {
-            if(entry.getValue() == Collections.max(map.values())){
+            if(Objects.equals(entry.getValue(), Collections.max(map.values()))){
                 charNum = entry.getKey();
 
             }
@@ -90,6 +90,7 @@ public class Code {
                 square += s.charAt(i);
             }
         }
+
         return square;
     }
 
