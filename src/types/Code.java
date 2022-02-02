@@ -30,7 +30,8 @@ public class Code {
     public static double average(int[] numbers) {
         double b = countNum;
         double a = sum(numbers);
-        return a/b;
+        double varuable = a/b;
+        return varuable;
     }
 
     public static Integer minimumElement(int[] integers) {
