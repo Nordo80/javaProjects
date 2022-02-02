@@ -16,18 +16,20 @@ public class Code {
         System.out.println(mode("abcacbbbacadddddd" ));
         System.out.println(squareDigits("a9b2" ));
     }
-    public static double countNum = 0;
     public static int sum(int[] numbers) {
         int result = 0;
         int i;
         for (i = 0; i < numbers.length; i++){
             result+=numbers[i];
-            countNum += 1;
         }
         return result;
     }
 
     public static double average(int[] numbers) {
+        double countNum = 0;
+        for (int i = 0; i < numbers.length; i++){
+            countNum += 1;
+        }
         double b = countNum;
         double a = sum(numbers);
         double varuable = a/b;
