@@ -7,7 +7,7 @@ public class Code {
 
     public static void main(String[] args) {
 
-        int[] numbers = {1, 3, -2, 9, 5};
+        int[] numbers = {1,2,3,4,5};
 
         System.out.println(sum(numbers)); // 11
         System.out.println(average(numbers));
@@ -38,11 +38,16 @@ public class Code {
     }
 
     public static Integer minimumElement(int[] integers) {
-        int minNumber = 0;
+        Integer minNumber = 0;
         int i;
-        for (i = 0; i < integers.length; i++){
-            if (minNumber > integers[i]){
-                minNumber = integers[i];
+        if (integers.length == 0){
+            minNumber = null;
+        }else{
+            minNumber = integers[0];
+            for (i = 1; i < integers.length; i++){
+                if (minNumber > integers[i]){
+                    minNumber = integers[i];
+                }
             }
         }
         return minNumber;
@@ -66,18 +71,22 @@ public class Code {
     public static Character mode(String input) {
         Map<Character, Integer> map = new Hashtable<>();
         int i;
-        char charNum = '0';
-        for (i = 0; i < input.length(); i++) {
-            if (map.containsKey(input.charAt(i))) {
-                map.put(input.charAt(i), map.get(input.charAt(i)) + 1);
-            } else {
-                map.put(input.charAt(i), 1);
+        char charNum = '\0';
+        if (input.length() == 0){
+            return null;
+        }else{
+            for (i = 0; i < input.length(); i++) {
+                if (map.containsKey(input.charAt(i))) {
+                    map.put(input.charAt(i), map.get(input.charAt(i)) + 1);
+                } else {
+                    map.put(input.charAt(i), 1);
+                }
             }
-        }
-        for (Map.Entry<Character, Integer> entry : map.entrySet()) {
-            if(Objects.equals(entry.getValue(), Collections.max(map.values()))){
-                charNum = entry.getKey();
+            for (Map.Entry<Character, Integer> entry : map.entrySet()) {
+                if(Objects.equals(entry.getValue(), Collections.max(map.values()))){
+                    charNum = entry.getKey();
 
+                }
             }
         }
         return charNum;
