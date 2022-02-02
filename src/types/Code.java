@@ -63,7 +63,7 @@ public class Code {
     public static Character mode(String input) {
         Map<Character, Integer> map = new Hashtable<>();
         int i;
-        char charNum = 0;
+        char charNum = '0';
         for (i = 0; i < input.length(); i++) {
             if (map.containsKey(input.charAt(i))) {
                 map.put(input.charAt(i), map.get(input.charAt(i)) + 1);
