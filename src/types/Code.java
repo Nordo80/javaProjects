@@ -38,19 +38,18 @@ public class Code {
     }
 
     public static Integer minimumElement(int[] integers) {
-        Integer minNumber = 0;
         int i;
         if (integers.length == 0){
-            minNumber = null;
+            return null;
         }else{
-            minNumber = integers[0];
+            Integer minNumber = integers[0];
             for (i = 1; i < integers.length; i++){
                 if (minNumber > integers[i]){
                     minNumber = integers[i];
                 }
             }
+            return minNumber;
         }
-        return minNumber;
     }
 
     public static String asString(int[] elements) {
