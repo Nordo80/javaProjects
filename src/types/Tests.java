@@ -74,7 +74,7 @@ public class Tests {
     }
 
     private Matcher<Double> closeTo(double value) {
-        double precision = 0.00001;
+        double precision = 0.00001; //NOPMD - suppressed UseUnderscoresInNumericLiterals - TODO explain reason for suppression
 
         return Matchers.closeTo(value, precision);
     }

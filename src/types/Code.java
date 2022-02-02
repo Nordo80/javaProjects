@@ -27,7 +27,8 @@ public class Code {
 
     public static double average(int[] numbers) {
         double countNum = 0;
-        for (int i = 0; i < numbers.length; i++){
+        int i;
+        for (i = 0; i < numbers.length; i++){
             countNum += 1;
         }
         double b = countNum;
