@@ -11,16 +11,16 @@ public class Program {
     }
 
     public static String asString(int input) {
-        StringBuilder text = new StringBuilder();
+        String text = "";
         while (input != 0){
             if(input % 2 == 0){
-                text.append("0");
+                text += "0";
             }else{
-                text.append("1");
+                text += "1";
             }
             input = input / 2;
         }
-        return reverseString(text.toString());
+        return reverseString(text);
     }
 
     public static int asDecimal(String input) {
