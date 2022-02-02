@@ -84,10 +84,11 @@ public class Code {
     public static String squareDigits(String s) {
         String square = "";
         int i;
+        int b = 0;
         for (i = 0; i < s.length(); i++){
             if (Character.isDigit(s.charAt(i))){
-                square += (int)Math.pow(Character.getNumericValue(s.charAt(i)),2);
-                System.out.println(s.charAt(i));
+                b = s.charAt(i) - '0';
+                square += b * b;
             }else{
                 square += s.charAt(i);
             }
