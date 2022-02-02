@@ -49,12 +49,11 @@ public class Code {
         int i;
         String blankk = ", ";
         for (i = 0; i < elements.length; i++){
-            if (i == (elements.length - 1)){
+            if (i == elements.length - 1){
                 numbersText += Integer.toString(elements[i]);
             }else{
                 numbersText += elements[i] + blankk;
             }
-
         }
 
         return numbersText;
