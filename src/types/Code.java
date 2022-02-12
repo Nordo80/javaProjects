@@ -15,6 +15,7 @@ public class Code {
         System.out.println(asString(numbers));
         System.out.println(mode("abcacbbbacadddddd" ));
         System.out.println(squareDigits("a9b2" ));
+        System.out.println(isolatedSquareCount());
     }
     public static int sum(int[] numbers) {
         int result = 0;
@@ -109,8 +110,20 @@ public class Code {
         boolean[][] matrix = getSampleMatrix();
 
         printMatrix(matrix);
-
+        
+        boolean new1 = false;
         int isolatedCount = 0;
+        for (int i = 0; i < 9; i ++) {
+            for (int j = 0; j < 9; j++){
+                for (int num = -1; num <1; num++){
+                    if (i == 0 && j != 0 && j != 9){
+                        System.out.println("kdkd");
+                    }
+                }
+            }
+        }
+        System.out.println(matrix[-1][-1]);
+
 
         // count isolates squares here
 
