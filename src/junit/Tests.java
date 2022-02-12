@@ -10,20 +10,20 @@ public class Tests {
 
     @Test
     public void equalityExamples() {
-        assertTrue(1 == 1);
-        assertFalse(1 == 2);
+        assertEquals(1, 1);
+        assertNotEquals(1, 2);
         Integer x2 = 1;
         Integer y2 = 1;
-        assertTrue(x2==y2);
+        assertSame(x2, y2);
         Integer x = 128;
         Integer y = 128;
-        assertFalse(x==y);
-        assertTrue(x.equals(y));
-        assertTrue("abc" == "abc");
-        assertTrue("abc" == "a" + "bc");
+        assertNotSame(x, y);
+        assertEquals(x, y);
+        assertSame("abc", "abc");
+        assertSame("abc", "a" + "bc");
         String a = "a";
-        assertFalse("abc" == a + "bc");
-        assertTrue("abc".equals(a + "bc"));
+        assertNotSame("abc", a + "bc");
+        assertEquals("abc", a + "bc");
     }
 
     @Test

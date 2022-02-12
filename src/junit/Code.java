@@ -4,10 +4,6 @@ import java.util.Arrays;
 
 public class Code {
 
-    private int currentIndex;
-    public void append(){
-
-    }
     public static void main(String[] args) {
         int[] numbers = {1,7};
         System.out.println(mode("adda"));
@@ -20,11 +16,7 @@ public class Code {
     }
 
     public static boolean isSpecial(int candidate) {
-        if (candidate % 11 <= 3) {
-            return true;
-        } else {
-            return false;
-        }
+        return candidate % 11 <= 3;
     }
 
     public static int longestStreak(String inputString) {
@@ -105,8 +97,9 @@ public class Code {
 
     public static int sumIgnoringDuplicates(int[] integers) {
         int counter = 0;
-        for (int i = 0; i < removeDuplicates(integers).length; i++)
+        for (int i = 0; i < removeDuplicates(integers).length; i++){
             counter += removeDuplicates(integers)[i];
+        }
         return counter;
     }
 
