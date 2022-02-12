@@ -20,21 +20,19 @@ public class Code {
     }
 
     public static int longestStreak(String inputString) {
-        int counter = 1;
+        int counter = 0;
         int maxCounter = 0;
         char new1 = 0;
-        if (inputString == null){
-            return maxCounter;
-        }else{
+        if (inputString != null){
             for (char i : inputString.toCharArray()) {
                 if (new1 == i) {
                     counter++;
                 } else {
-                    if (maxCounter < counter) {
-                        maxCounter = counter;
-                    }
                     counter = 1;
                     new1 = i;
+                }
+                if(maxCounter <= counter){
+                    maxCounter = counter;
                 }
             }
         }
