@@ -12,7 +12,7 @@ import java.nio.file.Paths;
 import java.util.List;
 
 public class NumberConverter {
-    List<String> reader = null;
+    List<String> reader;
 
     public NumberConverter(String lang){
         try {
