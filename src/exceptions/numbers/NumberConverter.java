@@ -24,10 +24,10 @@ public class NumberConverter {
 
             properties.load(reader);
             if (!properties.containsKey(String.valueOf(1))) {
-                throw new NullPointerException();
+                throw new IllegalStateException();
             }
 
-        } catch (NullPointerException e) {
+        } catch (IllegalStateException e) {
             throw new MissingTranslationException(lang);
         } catch (FileNotFoundException e) {
             throw new MissingLanguageFileException(lang, e);
@@ -60,8 +60,7 @@ public class NumberConverter {
         int c = a % 10;
 
         String cd;
-        String hundred = "";
-        String new1 = "";
+        String new1;
         cd = Integer.toString(c) + Integer.toString(b);
         if (c == 0) {
             cd = Integer.toString(b);
@@ -70,7 +69,7 @@ public class NumberConverter {
             cd = Integer.toString(c);
         }
         if (String.valueOf(a).length() == 2) {
-            hundred = properties.getProperty(String.valueOf(a / 10)) + properties.getProperty(String.valueOf("hundreds-before-delimiter")) + properties.getProperty(String.valueOf("hundred"));
+            String hundred = properties.getProperty(String.valueOf(a / 10)) + properties.getProperty(String.valueOf("hundreds-before-delimiter")) + properties.getProperty(String.valueOf("hundred"));
             if (cd.equals("0")) {
                 return hundred;
             }
