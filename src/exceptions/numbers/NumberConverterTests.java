@@ -27,7 +27,7 @@ public class NumberConverterTests {
 
     @Test(expected = MissingTranslationException.class)
     public void missingEssentialTranslationThrows() {
-        new NumberConverter("es").numberInWords(1);
+        new NumberConverter("es");
     }
 
     @Test
@@ -37,8 +37,8 @@ public class NumberConverterTests {
         assertThat(converter.numberInWords(0), is("zero"));
 
         assertThat(converter.numberInWords(1), is("one"));
+        NumberConverter converter1 = new NumberConverter("et");
 
-        assertThat(converter.numberInWords(13), is("thirteen"));
 
         assertThat(converter.numberInWords(123), is("one hundred twenty-three"));
     }

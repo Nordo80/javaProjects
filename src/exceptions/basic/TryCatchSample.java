@@ -7,6 +7,7 @@ public class TryCatchSample {
 
         String data = new TryCatchSample().readDataFrom(resource);
     }
+
     BufferedReader reader = null;
     public String readDataFrom(Resource resource) {
         String text = null;
@@ -20,5 +21,6 @@ public class TryCatchSample {
             resource.close();
         }
         return text;
+
     }
 }
