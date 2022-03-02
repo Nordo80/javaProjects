@@ -34,7 +34,7 @@ public class NumberConverter {
         } catch (Exception e) {
             throw new BrokenLanguageFileException(lang, e);
 
-        }finally {
+        } finally {
             close(is);
         }
     }
@@ -51,64 +51,76 @@ public class NumberConverter {
     }
 
 
+    int number;
+    int a;
+    int b;
+    int c;
+    String cd;
+    String new1;
     public String numberInWords(Integer number) {
         if (properties.containsKey(String.valueOf(number))) {
             return properties.getProperty(String.valueOf(number));
         }
-        int a = number / 10;
-        int b = number % 10;
-        int c = a % 10;
-
-        String cd;
-        String new1;
+        a = number / 10;
+        b = number % 10;
+        c = a % 10;
         cd = Integer.toString(c) + Integer.toString(b);
         if (c == 0) {
             cd = Integer.toString(b);
         }
-        if (b == 0 && c!= 1) {
+        if (b == 0 && c != 1) {
             cd = Integer.toString(c);
         }
         if (String.valueOf(a).length() == 2) {
-            String hundred = properties.getProperty(String.valueOf(a / 10)) + properties.getProperty(String.valueOf("hundreds-before-delimiter")) + properties.getProperty(String.valueOf("hundred"));
-            if (cd.equals("0")) {
-                return hundred;
+            return numberThree();
+        } else {
+            return numberTwo();
+        }
+    }
+
+    public String numberThree() {
+        String hundred = properties.getProperty(String.valueOf(a / 10)) + properties.getProperty(String.valueOf("hundreds-before-delimiter")) + properties.getProperty(String.valueOf("hundred"));
+        if (cd.equals("0")) {
+            return hundred;
+        }
+        if (c <= 1) {
+            if (properties.containsKey(String.valueOf(cd))) {
+                new1 = hundred + properties.getProperty(String.valueOf("hundreds-after-delimiter")) + properties.getProperty(String.valueOf(cd));
+            } else {
+                new1 = hundred + properties.getProperty(String.valueOf("hundreds-after-delimiter")) + properties.getProperty(String.valueOf(b)) + properties.getProperty(String.valueOf("teen"));
             }
-            if (c <= 1) {
-                if (properties.containsKey(String.valueOf(cd))) {
-                    new1 = hundred + properties.getProperty(String.valueOf("hundreds-after-delimiter")) + properties.getProperty(String.valueOf(cd));
+        } else {
+            if (properties.containsKey(String.valueOf(c * 10))) {
+                if (properties.getProperty(String.valueOf(b)).equals(properties.getProperty(String.valueOf(0)))) {
+                    new1 = hundred + properties.getProperty(String.valueOf("hundreds-after-delimiter")) + properties.getProperty(String.valueOf(c * 10));
                 } else {
-                    new1 = hundred + properties.getProperty(String.valueOf("hundreds-after-delimiter")) + properties.getProperty(String.valueOf(b)) + properties.getProperty(String.valueOf("teen"));
+                    new1 = hundred + properties.getProperty(String.valueOf("hundreds-after-delimiter")) + properties.getProperty(String.valueOf(c * 10)) + properties.getProperty("tens-after-delimiter") + properties.getProperty(String.valueOf(b));
                 }
             } else {
-                if (properties.containsKey(String.valueOf(c * 10))) {
-                    if(properties.getProperty(String.valueOf(b)).equals(properties.getProperty(String.valueOf(0)))){
-                        new1 = hundred + properties.getProperty(String.valueOf("hundreds-after-delimiter")) + properties.getProperty(String.valueOf(c * 10));
-                    }else{
-                        new1 = hundred + properties.getProperty(String.valueOf("hundreds-after-delimiter")) + properties.getProperty(String.valueOf(c * 10)) + properties.getProperty("tens-after-delimiter") + properties.getProperty(String.valueOf(b));
-                    }
+                if (b == 0) {
+                    new1 = hundred + properties.getProperty(String.valueOf("hundreds-after-delimiter")) + properties.getProperty(String.valueOf(c)) + properties.getProperty(String.valueOf("tens-suffix"));
                 } else {
-                    if(b == 0){
-                        new1 = hundred + properties.getProperty(String.valueOf("hundreds-after-delimiter")) + properties.getProperty(String.valueOf(c)) + properties.getProperty(String.valueOf("tens-suffix"));
-                    }else{
-                        new1 = hundred + properties.getProperty(String.valueOf("hundreds-after-delimiter")) + properties.getProperty(String.valueOf(c)) + properties.getProperty(String.valueOf("tens-suffix")) + properties.getProperty("tens-after-delimiter") + properties.getProperty(String.valueOf(b));
-                    }
-                }
-
-                }
-        }else{
-            if (a * b == 0) {
-                return properties.getProperty(String.valueOf(a)) + properties.getProperty(String.valueOf("tens-suffix"));
-            }
-            if (a==1){
-                new1 = properties.getProperty(String.valueOf(b)) + properties.getProperty(String.valueOf("teen"));
-            }else{
-                if(properties.containsKey(String.valueOf(a*10))){
-                    new1 = properties.getProperty(String.valueOf(a*10)) + properties.getProperty("tens-after-delimiter") + properties.getProperty(String.valueOf(b));
-                }else{
-                    new1 = properties.getProperty(String.valueOf(a)) + properties.getProperty(String.valueOf("tens-suffix")) + properties.getProperty("tens-after-delimiter") + properties.getProperty(String.valueOf(b));
+                    new1 = hundred + properties.getProperty(String.valueOf("hundreds-after-delimiter")) + properties.getProperty(String.valueOf(c)) + properties.getProperty(String.valueOf("tens-suffix")) + properties.getProperty("tens-after-delimiter") + properties.getProperty(String.valueOf(b));
                 }
             }
 
-        }return new1;
+        }
+        return new1;
     }
+    public String numberTwo(){
+        if (a * b == 0) {
+            return properties.getProperty(String.valueOf(a)) + properties.getProperty(String.valueOf("tens-suffix"));
+        }
+        if (a == 1) {
+            new1 = properties.getProperty(String.valueOf(b)) + properties.getProperty(String.valueOf("teen"));
+        } else {
+            if (properties.containsKey(String.valueOf(a * 10))) {
+                new1 = properties.getProperty(String.valueOf(a * 10)) + properties.getProperty("tens-after-delimiter") + properties.getProperty(String.valueOf(b));
+            } else {
+                new1 = properties.getProperty(String.valueOf(a)) + properties.getProperty(String.valueOf("tens-suffix")) + properties.getProperty("tens-after-delimiter") + properties.getProperty(String.valueOf(b));
+            }
+        }
+        return new1;
+    }
+
 }
