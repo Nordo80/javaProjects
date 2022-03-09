@@ -10,6 +10,11 @@ import java.util.Properties;
 
 public class NumberConverter {
     Properties properties = new Properties();
+    int a;
+    int b;
+    int c;
+    String cd;
+    String new1;
 
     public NumberConverter(String lang) {
         String filePath = "src/exceptions/numbers/numbers_" + lang + ".properties";
@@ -50,13 +55,6 @@ public class NumberConverter {
         }
     }
 
-
-    int number;
-    int a;
-    int b;
-    int c;
-    String cd;
-    String new1;
     public String numberInWords(Integer number) {
         if (properties.containsKey(String.valueOf(number))) {
             return properties.getProperty(String.valueOf(number));
