@@ -5,6 +5,7 @@ import java.util.List;
 abstract sealed class AbstractTaxSalesAnalyser permits DifferentiatedTaxSalesAnalyser, FlatTaxSalesAnalyser, TaxFreeSalesAnalyser {
     public static final Double TAX_RATE = 1.2;
     public List<SalesRecord> records;
+    abstract double getTaxRate();
 
     protected AbstractTaxSalesAnalyser(List<SalesRecord> records) {
         this.records = records;
@@ -27,10 +28,6 @@ abstract sealed class AbstractTaxSalesAnalyser permits DifferentiatedTaxSalesAna
             }
         }
         return salesByProduct / getTaxRate();
-    }
-
-    protected Double getTaxRate() {
-        return TAX_RATE;
     }
 
     public String getIdOfMostPopularItem() {

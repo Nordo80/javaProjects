@@ -8,7 +8,7 @@ non-sealed class TaxFreeSalesAnalyser extends AbstractTaxSalesAnalyser {
         super(records);
     }
     @Override
-    protected Double getTaxRate() {
+    protected double getTaxRate() {
         return 1.0;
     }
 
