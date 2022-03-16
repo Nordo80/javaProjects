@@ -61,13 +61,11 @@ public class Hand implements Iterable<Card>, Comparable<Hand> {
                 tripsCounter = 1;
             }
         }
-        else if(handtypeIndex == 2){
-            if(equals(card)){
-                handtypeIndex = 3;
-                priorityNumber = 4;
+        else if(handtypeIndex == 2 && equals(card)){
+            handtypeIndex = 3;
+            priorityNumber = 4;
             }
         }
-    }
 
     public boolean straightContains = false;
     public int previousIndex;
@@ -126,12 +124,10 @@ public class Hand implements Iterable<Card>, Comparable<Hand> {
         return Objects.equals(card, previousCard);
     }
     public void containsFourOfAKIND(String card){
-        if (handtypeIndex == 3 && priorityNumber <= 7){
-            if(equals(card)){
-                handtypeIndex = 7;
+        if (handtypeIndex == 3 && priorityNumber <= 7 && equals(card)){
+            handtypeIndex = 7;
             }
         }
-    }
     public void containsStraightFlush(){
         if(flashContains && straightContains){
             handtypeIndex = 8;
