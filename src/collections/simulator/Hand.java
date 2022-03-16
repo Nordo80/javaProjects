@@ -35,7 +35,7 @@ public class Hand implements Iterable<Card>, Comparable<Hand> {
     }
     public void containsOnePair(String card){
         if(handtypeIndex < 1 ) {
-            if (previousCard == card) {
+            if (Objects.equals(previousCard, card)) {
                 handtypeIndex = 1;
             }
             previousCard = card;
@@ -43,7 +43,7 @@ public class Hand implements Iterable<Card>, Comparable<Hand> {
     }
     public void containsTwoPairs(String card){
         if (handtypeIndex == 1  && priorityNumber <= 2){
-            if(previousCard == card){
+            if(Objects.equals(previousCard, card)){
                 handtypeIndex = 2;
                 priorityNumber = 3;
             }
@@ -54,7 +54,7 @@ public class Hand implements Iterable<Card>, Comparable<Hand> {
     public int tripsCounter = 0;
     public void containsTrips(String card){
         if (handtypeIndex == 1 && priorityNumber <= 3){
-            if(card == previousCard && tripsCounter == 0){
+            if(Objects.equals(card, previousCard) && tripsCounter == 0){
                 handtypeIndex = 3;
                 priorityNumber = 4;
             }else{
@@ -62,7 +62,7 @@ public class Hand implements Iterable<Card>, Comparable<Hand> {
             }
         }
         else if(handtypeIndex == 2){
-            if(card == previousCard){
+            if(equals(card)){
                 handtypeIndex = 3;
                 priorityNumber = 4;
             }
@@ -95,7 +95,7 @@ public class Hand implements Iterable<Card>, Comparable<Hand> {
     public String previousSuit;
     public boolean flashContains = false;
     public void containsFlush(String card){
-        if (flushCounter == 0 || previousSuit == card){
+        if (flushCounter == 0 || Objects.equals(previousSuit, card)){
             flushCounter += 1;
             previousSuit = card;
         }
@@ -110,7 +110,7 @@ public class Hand implements Iterable<Card>, Comparable<Hand> {
     public String fullHousePreviousCard = "";
     public void containsFullHouse(String card){
         if(priorityNumber <= 6){
-            if (handtypeIndex == 3 && fullHousePreviousCard == card){
+            if (handtypeIndex == 3 && Objects.equals(fullHousePreviousCard, card)){
                 handtypeIndex = 6;
                 priorityNumber = 7;
             }else{
@@ -122,9 +122,12 @@ public class Hand implements Iterable<Card>, Comparable<Hand> {
             }
         }
     }
+    public boolean equals(String card) {
+        return Objects.equals(card, previousCard);
+    }
     public void containsFourOfAKIND(String card){
         if (handtypeIndex == 3 && priorityNumber <= 7){
-            if(card == previousCard){
+            if(equals(card)){
                 handtypeIndex = 7;
             }
         }
