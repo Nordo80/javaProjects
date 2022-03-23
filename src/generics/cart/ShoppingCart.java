@@ -36,11 +36,12 @@ public class ShoppingCart<T extends CartItem> {
         String previousElementId = "";
         for(T element : elements){
             checkQuantityById(element.getId());
-            if(!Objects.equals(element.getId(), previousElementId))
+            if(!Objects.equals(element.getId(), previousElementId)) {
                 newString = mainString + "(" + element.getId() + ", " + element.getPrice() + ", " + quantity + ")";
-            previousElementId = element.getId();
-            quantity = 0;
-            mainString += newString + ", ";
+                previousElementId = element.getId();
+                quantity = 0;
+                mainString += newString + ", ";
+            }
         }
         return newString;
     }
