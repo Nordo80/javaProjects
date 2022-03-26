@@ -3,7 +3,6 @@ package generics.cart;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class ShoppingCart<T extends CartItem> {
     private List<T> elements = new ArrayList<>();
