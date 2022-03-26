@@ -50,7 +50,6 @@ public class Analyser {
     }
 
     public String statesWithBiggestSales() {
-        Comparator<Entry> comparator = Comparator.comparing(Entry::getAmount);
         Map<String, Double> map = repository.getEntries().stream()
                 .collect(Collectors.toMap(
                         Entry::getState,
