@@ -18,20 +18,20 @@ public class Repository{
     private DateTimeFormatter formatter = DateTimeFormatter
             .ofPattern("dd.MM.yyyy");
 
-    public List<Entry> getEntries() {
+    public List<Entry> getEntries(){
         List<Entry> records = new ArrayList<>();
         try {
             List<String[]> list = Files.lines(Paths.get(FILE_PATH))
-                    .map(l -> l.split(("\t")))
+                    .map(l -> l.split("\t"))
                     .collect(Collectors.toList());
             list.remove(0);
             list.stream()
                     .map(x -> records.add(createEntry(x))).toList();
 
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("File not fouded" + e);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("IO exception!" + e);
         }
 
         return records;
