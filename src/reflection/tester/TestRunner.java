@@ -4,7 +4,7 @@ import java.lang.reflect.Method;
 import java.util.List;
 
 public class TestRunner {
-    String result = "";
+    public String result = "";
     public void runTests(List<String> testClassNames) {
         try {
             for (String i : testClassNames) {
@@ -15,16 +15,8 @@ public class TestRunner {
                     if(annotation == null){
                         continue;
                     }
-                    if(actualError(field,aClass) == null && annotation.expected().getName().equals("reflection.tester.MyTest$None")){
-                        result += field.getName() + "() - OK ";
-                    }else {
-                        result += field.getName() + "() - FAILED ";
-                    }
-                    if(actualError(field,aClass) == null) {
-                        continue;
-                    }
                     Boolean assignableFrom = annotation.expected().isAssignableFrom(actualError(field,aClass));
-                    if(assignableFrom ){
+                    if(assignableFrom){
                         result += field.getName() + "() - OK ";
                     }else{
                         result += field.getName() + "() - FAILED ";
@@ -37,7 +29,7 @@ public class TestRunner {
         }
     }
     public Class<? extends Throwable> actualError(Method field, Class aClass) {
-        Class classWithError = null;
+        Class classWithError = MyTest.None.class;
         try {
             field.invoke(aClass.getDeclaredConstructor().newInstance());
 
