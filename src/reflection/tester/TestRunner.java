@@ -15,18 +15,18 @@ public class TestRunner {
                     if(annotation == null){
                         continue;
                     }
-                    if(ActualError(field,aClass) == null && annotation.expected().getName().equals("reflection.tester.MyTest$None")){
+                    if(actualError(field,aClass) == null && annotation.expected().getName().equals("reflection.tester.MyTest$None")){
                         result += field.getName() + "() - OK ";
                     }else {
                         result += field.getName() + "() - FAILED ";
                     }
-                    if(ActualError(field,aClass) == null) {
+                    if(actualError(field,aClass) == null) {
                         continue;
                     }
-                    Boolean assignableFrom = annotation.expected().isAssignableFrom(ActualError(field,aClass));
-                    if(assignableFrom )
+                    Boolean assignableFrom = annotation.expected().isAssignableFrom(actualError(field,aClass));
+                    if(assignableFrom ){
                         result += field.getName() + "() - OK ";
-                    else{
+                    }else{
                         result += field.getName() + "() - FAILED ";
                     }
                 }
@@ -36,7 +36,7 @@ public class TestRunner {
 
         }
     }
-    public Class<? extends Throwable> ActualError(Method field, Class aClass) {
+    public Class<? extends Throwable> actualError(Method field, Class aClass) {
         Class classWithError = null;
         try {
             field.invoke(aClass.getDeclaredConstructor().newInstance());
